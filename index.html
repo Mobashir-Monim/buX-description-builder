@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/summernote/dist/summernote.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <title>buX Description Builder</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-4 align-items-center">
+            <div class="col-2 col-sm-2">
+                <img src="img/nav-inv.png" alt="buX-logo" class="img-fluid">
+            </div>
+            <div class="col-6 col-sm">
+                <h2 class="border-bottom ">buX Course Description Builder</h2>
+            </div>
+        </div>
+        <div class="row mt-5 mb-5">
+            <div class="col-md-6">
+                <label for="c_code">Course Code</label>
+                <input type="text" name="c_code" id="c_code" class="form-control" placeholder="CSE 103">
+                <span style="font-size: 70%;">Please put a space in between the alphabets and numbers</span>
+            </div>
+            <div class="col-md-6">
+                <label for="c_dept">Course Department/School</label>
+                <input type="text" name="c_dept" id="c_dept" class="form-control" placeholder="CSE,Computer Science and Engineering">
+                <span style="font-size: 70%;">Please put a comma in between the tags</span>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <label for="c_name">Course Name</label>
+                <input type="text" name="c_name" id="c_name" class="form-control" placeholder="Introduction to Computing">
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <label for="c_description">Course Description</label>
+                <textarea name="c_description" id="summernote" cols="30" rows="10" placeholder="This is the course description placeholder"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" id="inst-cont">
+                <div class="row mb-5">
+                    <div class="col-md">
+                        <div class="row mb-3">
+                            <div class="col-md">
+                                <label for="i_n_1">Instructor Name</label>
+                                <input type="text" name="i_n_1" id="i_n_1" class="form-control" placeholder="Mobashir Monim">
+                            </div>
+                            <div class="col-md">
+                                <label for="i_d_1">Instructor Designation</label>
+                                <input type="text" name="i_d_1" id="i_d_1" class="form-control" placeholder="Lecturer">
+                            </div>
+                            <div class="col-md">
+                                <label for="i_s_1">Instructor School/Department</label>
+                                <input type="text" name="i_s_1" id="i_s_1" class="form-control" placeholder="CSE Department">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <label for="i_u_1">Instructor Image URL</label>
+                                <input type="text" name="i_u_1" id="i_u_1" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end pb-1 justify-content-center i-del">
+                        <!-- <i class="fa fas fa-user-minus fa-2x"></i> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md"></div>
+            <div class="col-md-1 d-flex align-items-end pb-1 justify-content-center">
+                <i class="fa fas fa-user-plus fa-2x add" onclick="addInstructor()"></i>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <textarea name="output" cols="30" rows="2" id="output" class="form-control" placeholder="Generate Code will appear here"></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md">
+                <a href="#/" class="btn btn-custom w-100" onclick="copyCode()">Copy Generated Code</a>
+            </div>
+            <div class="col-md">
+                <a href="#/" class="btn btn-custom w-100" onclick="generateCode()">Generate buX description</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <a href="https://www.eveneer.xyz" target="_blank"><img src="/img/eve-logo-17.svg" alt="Eveneer" style="width: 80px;"></a>
+            </div>
+        </div>
+    </div>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/summernote/dist/summernote.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'Introduction to computers. Introduction to basic word processing and spreadsheet programs. Internet and information access. HTML Basic graphics.',
+                height: 100
+            });
+        });
+
+        var instructors = 1;
+
+        function addInstructor() {
+            instructors++;
+            var $row = $("<div>", {"class": "row mb-5", "id": "inst-" + instructors});
+            var $delCol = $("<div>", {"class": "col-md-1 d-flex align-items-end pb-1 justify-content-center i-del"});
+            $delCol.append('<i class="fa fas fa-user-minus fa-2x" id="del-' + instructors + '"></i>');
+            $delCol.on('click', function (instructors) { $('#inst-' + instructors.target.id.split('del-')[1]).remove(); });
+            $row.append($('<div class="col-md"><div class="row mb-3"><div class="col-md"><label for="i_n_' + instructors + '">Instructor Name</label><input type="text" name="i_n_' + instructors + '" id="i_n_' + instructors + '" class="form-control" placeholder="Mobashir Monim"></div><div class="col-md"><label for="i_d_' + instructors + '">Instructor Designation</label><input type="text" name="i_d_' + instructors + '" id="i_d_' + instructors + '" class="form-control" placeholder="Lecturer"></div><div class="col-md"><label for="i_s_' + instructors + '">Instructor School/Department</label><input type="text" name="i_s_' + instructors + '" id="i_s_' + instructors + '" class="form-control" placeholder="CSE Department"></div></div><div class="row"><div class="col-md"><label for="i_u_' + instructors + '">Instructor Image URL</label><input type="text" name="i_u_' + instructors + '" id="i_u_' + instructors + '" class="form-control"></div></div></div>'));
+            $row.append($delCol)
+            $('#inst-cont').append($row);
+        }
+
+        function generateCode() {
+            var htmlString = generateTags() + '<section class="about"><h2>About ' + $("#c_name").val() + '</h2><p style="text-align:justify;">' + $('#summernote').summernote('code') + '</p></section';
+            htmlString += '<section class="course-staff"><h2>Course Instructors</h2>' + generateInstructors() + '</section>';
+            var text = formatFactory(htmlString);
+            $("#output").val(text);
+        }
+
+
+        function generateTags(value) {
+            var c_name = $("#c_name").val();
+            var c_code = $('#c_code').val();
+            var c_dept = $('#c_dept').val();
+            var htmlString = '<p style="display:none"> ' + c_code + ' </p>';
+            htmlString += '<p style="display:none"> ' + c_code.split(' ')[0] + ' </p>';
+            htmlString += '<p style="display:none"> ' + c_code.split(' ')[1] + ' </p>';
+            htmlString += '<p style="display:none"> ' + c_code.split(' ')[0] + c_code.split(' ')[1] + ' </p>';
+            
+            c_dept.split(',').forEach(value => {
+                htmlString += '<p style="display:none"> ' + value + ' </p>';
+            });
+
+            htmlString += '<p style="display:none"> ' + c_name + ' </p>';
+
+            return htmlString;
+        }
+
+        function generateInstructors() {
+            var facString = '';
+
+            for (let index = 1; index <= instructors; index++) {
+                if (document.getElementById('i_n_' + index) != null) {
+                    facString += '<article class="teacher"><div class="teacher-image"><img src="' + document.getElementById('i_u_' + index).value + '" align="left" style="margin:0 20 px 0" alt="' + document.getElementById('i_n_' + index).value + '"></div><h3>' + document.getElementById('i_n_' + index).value + '</h3><p>' + document.getElementById('i_d_' + index).value + '<br/>' + document.getElementById('i_s_' + index).value + '</p></article>';
+                }
+            }
+
+            return facString;
+        }
+
+        function formatFactory(html) {
+            function parse(html, tab = 0) {
+                var tab;
+                var html = $.parseHTML(html);
+                var formatHtml = new String();   
+
+                function setTabs () {
+                    var tabs = new String();
+
+                    for (i=0; i < tab; i++){
+                        tabs += '\t';
+                    }
+                    return tabs;    
+                };
+
+
+                $.each( html, function( i, el ) {
+                    if (el.nodeName == '#text') {
+                        if (($(el).text().trim()).length) {
+                            formatHtml += setTabs() + $(el).text().trim() + '\n';
+                        }    
+                    } else {
+                        var innerHTML = $(el).html().trim();
+                        $(el).html(innerHTML.replace('/\n', '').replace(/ +(?= )/g, ''));
+                        
+
+                        if ($(el).children().length) {
+                            $(el).html('\n' + parse(innerHTML, (tab + 1)) + setTabs());
+                            var outerHTML = $(el).prop('outerHTML').trim();
+                            formatHtml += setTabs() + outerHTML + '\n'; 
+
+                        } else {
+                            var outerHTML = $(el).prop('outerHTML').trim();
+                            formatHtml += setTabs() + outerHTML + '\n';
+                        }      
+                    }
+                });
+
+                return formatHtml;
+            };   
+            
+            return parse(html.replace(/(\r\n|\n|\r)/gm," ").replace(/ +(?= )/g,''));
+        };
+
+        function copyCode() {
+            $("#output").select();
+            document.execCommand('copy');
+        }
+    </script>
+</body>
+</html>
