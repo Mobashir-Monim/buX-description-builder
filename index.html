@@ -6,7 +6,86 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        body {
+            background-color: #171717;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body::after {
+            content: "";
+            background: url("/img/eve-logo-17.svg");
+            opacity: 0.5;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: initial;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;   
+        }
+
+        input {
+            border-radius: 25px !important;
+            border-top-left-radius: 10px !important;
+            border-bottom-left-radius: 10px !important;
+            font-size: 80% !important;
+            font-weight: 800 !important;
+        }
+
+        .note-toolbar, .note-editable {
+            background-color: #fff !important;
+            color: #171717;
+            font-size: 80%;
+        }
+
+        .note-toolbar {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 25px;
+        }
+
+        .note-resizebar {
+            background-color: #ddd;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .note-toolbar {
+            border-bottom: 1px ridge #171717;
+        }
+
+        .i-del i {
+            color: rgb(200, 50, 50);
+
+        }
+
+        .i-del i:hover {
+            color: rgb(255, 10, 10);
+        }
+
+        .add {
+            color: rgb(50, 200, 50);
+        }
+
+        .add:hover {
+            color: rgb(10, 255, 10);
+        }
+
+        .btn-custom {
+            background-color: #fff;
+            color: #171717;
+            border-radius: 25px;
+            border: 1px solid white;
+        }
+
+        .btn-custom:hover {
+            background-color: #171717;
+            color: #fff;
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/summernote/dist/summernote.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
