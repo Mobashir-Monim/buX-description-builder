@@ -220,7 +220,7 @@
         }
 
         function generateCode() {
-            var htmlString = generateTags() + '<section class="about"><h2>About ' + $("#c_name").val() + '</h2><p style="text-align:justify;">' + $('#summernote').summernote('code') + '</p></section';
+            var htmlString = generateTags() + '<section class="about"><h2>About ' + $("#c_name").val() + '</h2><p style="text-align:justify;">' + $('#summernote').summernote('code') + '</p></section>';
             htmlString += '<section class="course-staff"><h2>Course Instructors</h2>' + generateInstructors() + '</section>';
             var text = formatFactory(htmlString);
             $("#output").val(text);
