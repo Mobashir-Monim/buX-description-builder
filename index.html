@@ -152,6 +152,7 @@
                             <div class="col-md">
                                 <label for="i_u_1">Instructor Image URL</label>
                                 <input type="text" name="i_u_1" id="i_u_1" class="form-control">
+                                <span style="font-size: 70%;">This is the URL that you can copy from studio after uploading the image on studio</span>
                             </div>
                         </div>
                     </div>
@@ -214,7 +215,7 @@
             var $delCol = $("<div>", {"class": "col-md-1 d-flex align-items-end pb-1 justify-content-center i-del"});
             $delCol.append('<i class="fa fas fa-user-minus fa-2x" id="del-' + instructors + '"></i>');
             $delCol.on('click', function (instructors) { $('#inst-' + instructors.target.id.split('del-')[1]).remove(); });
-            $row.append($('<div class="col-md"><div class="row mb-3"><div class="col-md"><label for="i_n_' + instructors + '">Instructor Name</label><input type="text" name="i_n_' + instructors + '" id="i_n_' + instructors + '" class="form-control" placeholder="Instructor Name"></div><div class="col-md"><label for="i_d_' + instructors + '">Instructor Designation</label><input type="text" name="i_d_' + instructors + '" id="i_d_' + instructors + '" class="form-control" placeholder="Instructor Designation"></div><div class="col-md"><label for="i_s_' + instructors + '">Instructor School/Department</label><input type="text" name="i_s_' + instructors + '" id="i_s_' + instructors + '" class="form-control" placeholder="Instructor Department"></div></div><div class="row"><div class="col-md"><label for="i_u_' + instructors + '">Instructor Image URL</label><input type="text" name="i_u_' + instructors + '" id="i_u_' + instructors + '" class="form-control"></div></div></div>'));
+            $row.append($('<div class="col-md"><div class="row mb-3"><div class="col-md"><label for="i_n_' + instructors + '">Instructor Name</label><input type="text" name="i_n_' + instructors + '" id="i_n_' + instructors + '" class="form-control" placeholder="Instructor Name"></div><div class="col-md"><label for="i_d_' + instructors + '">Instructor Designation</label><input type="text" name="i_d_' + instructors + '" id="i_d_' + instructors + '" class="form-control" placeholder="Instructor Designation"></div><div class="col-md"><label for="i_s_' + instructors + '">Instructor School/Department</label><input type="text" name="i_s_' + instructors + '" id="i_s_' + instructors + '" class="form-control" placeholder="Instructor Department"></div></div><div class="row"><div class="col-md"><label for="i_u_' + instructors + '">Instructor Image URL</label><input type="text" name="i_u_' + instructors + '" id="i_u_' + instructors + '" class="form-control"><span style="font-size: 70%;">This is the URL that you can copy from studio after uploading the image on studio</span></div></div></div>'));
             $row.append($delCol)
             $('#inst-cont').append($row);
         }
